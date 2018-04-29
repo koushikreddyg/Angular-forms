@@ -1,0 +1,31 @@
+<div *ngFor="let switch of switchArray; trackBy: trackCourses">
+    <button class="btn btn-primary"  
+    [ngClass]="{
+      'disabled':fanSwitch
+    }" [ngStyle]="{
+      'color':'red'
+    }" (click)="switchFan()">
+        {{switch.name}}</button>
+     <p *ngIf="fanSwitch; else fanOn" [ngClass]="{
+       'text-danger':true
+     }">{{switch.on}}</p>
+     <ng-template #fanOn >
+         <p [ngClass]="{
+           'text-success':true
+         }" class="text-success">{{switch.off}}</p>
+     </ng-template>
+</div>
+<button (click)="loadFruits()">load fruits</button>
+<div *ngIf="fruitsSwitch">
+    <li *ngFor="let fruit of fruits">
+      I like {{fruit}}
+    </li>
+</div>
+<button class="btn btn-warning" (click)="changeSwitch()">trigger</button>
+<div [ngSwitch]="switchCase">
+  <h1 *ngSwitchCase="true">Yes</h1>
+  <h1 *ngSwitchCase="false">No</h1>
+  <h1 *ngSwitchDefault>Default</h1>
+</div>
+
+    
